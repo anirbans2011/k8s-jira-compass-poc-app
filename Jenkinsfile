@@ -2,25 +2,31 @@ pipeline {
   agent any
 
   stages {
+
     stage('Checkout') {
       steps {
-        git 'https://github.com/anirbans2011/k8s-jira-compass-poc-app.git'
+        git branch: 'main',
+            url: 'https://github.com/anirbans2011/k8s-jira-compass-poc-app.git'
       }
     }
 
-    stage('Build Backend') {
-      steps {
-        sh 'cd backend && mvn clean package'
-      }
-    }
-
-    stage('Build Images with Podman') {
+    stage('Build Backend Image (Podman)') {
       steps {
         sh '''
-          podman build -t backend-app backend
-          podman build -t frontend-app frontend
+          cd backend
+          podman build -t backend-app:1.0 .
         '''
       }
     }
+
+    stage('Build Frontend Image (Podman)') {
+      steps {
+        sh '''
+          cd frontend
+          podman build -t frontend-app:1.0 .
+        '''
+      }
+    }
+
   }
 }

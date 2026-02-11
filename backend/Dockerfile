@@ -1,5 +1,6 @@
-FROM eclipse-temurin:17-jdk
+FROM python:3.10-slim
 WORKDIR /app
-COPY target/demo-0.0.1.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY app.py .
+CMD ["python", "app.py"]
