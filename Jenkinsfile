@@ -10,21 +10,16 @@ pipeline {
       }
     }
 
-    stage('Build Backend Docker Image') {
+    stage('Build Docker Images') {
       steps {
         sh '''
           docker build -t poc-backend:1.0 backend
-        '''
-      }
-    }
+          docker tag poc-backend:1.0 poc-backend:latest
 
-    stage('Build Frontend Docker Image') {
-      steps {
-        sh '''
           docker build -t poc-frontend:1.0 frontend
+          docker tag poc-frontend:1.0 poc-frontend:latest
         '''
       }
     }
-
   }
 }
