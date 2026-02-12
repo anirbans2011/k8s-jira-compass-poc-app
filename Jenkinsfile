@@ -2,18 +2,12 @@ pipeline {
   agent any
 
   environment {
-    DOCKERHUB_USER = 'anirbansantra2011'
+    DOCKERHUB_USER = '<DOCKERHUB_USERNAME>'
     BACKEND_IMAGE  = 'poc-backend'
     FRONTEND_IMAGE = 'poc-frontend'
   }
 
   stages {
-
-    stage('Checkout') {
-      steps {
-        git 'https://github.com/anirbans2011/k8s-jira-compass-poc-app.git'
-      }
-    }
 
     stage('Build Images') {
       steps {
