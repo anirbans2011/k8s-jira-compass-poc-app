@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    DOCKERHUB_USER = '<DOCKERHUB_USERNAME>'
+    DOCKERHUB_USER = 'anirbansantra2011'
     BACKEND_IMAGE  = 'poc-backend'
     FRONTEND_IMAGE = 'poc-frontend'
   }
