@@ -10,20 +10,18 @@ pipeline {
       }
     }
 
-    stage('Build Backend Image (Podman)') {
+    stage('Build Backend Docker Image') {
       steps {
         sh '''
-          cd backend
-          podman build -t backend-app:1.0 .
+          docker build -t poc-backend:1.0 backend
         '''
       }
     }
 
-    stage('Build Frontend Image (Podman)') {
+    stage('Build Frontend Docker Image') {
       steps {
         sh '''
-          cd frontend
-          podman build -t frontend-app:1.0 .
+          docker build -t poc-frontend:1.0 frontend
         '''
       }
     }
